@@ -9,7 +9,7 @@
 	$('.new-todo').on('change', function () {
 		$.ajax({
 			type: "PUT",
-			url: "http://localhost:8080/insert",
+			url: "http://localhost:8080/api/todos/insert",
 			contentType: 'application/json',
 			data: JSON.stringify(
 				{
@@ -25,7 +25,7 @@
 	$('.clear-completed').on('click', function(){
 			$.ajax({
 				type : "DELETE",
-				url : "http://localhost:8080/deletecomplete",
+				url : "http://localhost:8080/api/todos/deletecomplete",
 				success: function (data) {
 				getList();
 			}
@@ -61,7 +61,7 @@ function setList(data) {
 		var i = $('.toggle').index(this);
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/complete",
+			url: "http://localhost:8080/api/todos/complete",
 			contentType: "application/json",
 			data: JSON.stringify({
 				id: $('li').eq(i).attr('id'),
@@ -78,7 +78,7 @@ function setList(data) {
 		var i = $('.destroy').index(this);
 		$.ajax({
 			type: "DELETE",
-			url: "http://localhost:8080/delete",
+			url: "http://localhost:8080/api/todos/delete",
 			contentType: "application/json",
 			data: JSON.stringify({
 				id: $('li').eq(i).attr('id'),
@@ -94,7 +94,7 @@ function setList(data) {
 function getList() {
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8080/getlist",
+		url: "http://localhost:8080/api/todos/getlist",
 		success: function (data) {
 			setList(data);
 		}
@@ -104,7 +104,7 @@ function getList() {
 function filter(bool){
 $.ajax({
 		type: "POST",
-		url: "http://localhost:8080/getlistbycomplete",
+		url: "http://localhost:8080/api/todos/getlistbycomplete",
 			contentType: "application/json",
 			data: JSON.stringify({
 				completed : bool,
