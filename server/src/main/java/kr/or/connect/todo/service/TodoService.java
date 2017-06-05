@@ -25,7 +25,13 @@ public class TodoService {
 	public Integer insert(Todo todo){
 		Timestamp hi = new Timestamp(System.currentTimeMillis());
 		todo.setDate(hi);
-		return dao.insert(todo);
+		String str = new String(todo.getTodo());
+		if(str.trim().equals("")){
+			return 0;
+		}
+		else{
+			return dao.insert(todo);
+		}
 	}
 	
 	public List<Todo> getList(){

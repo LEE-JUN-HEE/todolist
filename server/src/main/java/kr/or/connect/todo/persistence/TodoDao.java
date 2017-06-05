@@ -31,8 +31,6 @@ public class TodoDao {
 	public Integer insert(Todo todo){
 		try{
 			SqlParameterSource params = new BeanPropertySqlParameterSource(todo);
-
-			System.out.println(todo + "/" + params);
 			return insertAction.executeAndReturnKey(params).intValue();
 		}
 		catch(Exception e){
@@ -59,7 +57,6 @@ public class TodoDao {
 	
 	public Integer complete(Todo todo){
 		Map<String, Object> param = new HashMap<String, Object>();
-		System.out.println(todo.isCompleted());
 		param.put("completed", todo.isCompleted());
 		param.put("id", todo.id);
 		return jdbc.update(TodoSqls.UPDATE_COMPLETE, param);
